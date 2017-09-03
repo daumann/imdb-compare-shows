@@ -8,7 +8,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export default function App() {
   return (
-      <MuiThemeProvider>
+      <MuiThemeProvider>TEST
           <div style={s.root}>
               <Switch>
                   <Route path="/" component={CompareShows} />
