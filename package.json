@@ -11,12 +11,14 @@
     "type": "git",
     "url": "git+https://github.com/rafrex/spa-github-pages.git"
   },
-  "author": "Rafael Pedicini <code@rafrex.com>",
   "license": "MIT",
   "dependencies": {
+    "material-ui": "^0.19.1",
+    "material-ui-search-bar": "^0.4.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-google-charts": "^1.5.5",
     "react-interactive": "^0.6.5",
     "react-router-dom": "^4.1.1"
   },

@@ -1,51 +1,39 @@
-import React from 'react';
+import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import Interactive from 'react-interactive';
-import { Link } from 'react-router-dom';
 import { Li } from '../styles/style';
 import s from '../styles/exampleTwoDeepComponent.style';
+import Avatar from 'material-ui/Avatar';
+import SvgIconFace from 'material-ui/svg-icons/av/movie';
+import SearchBar from 'material-ui-search-bar'
+import Chip from 'material-ui/Chip';
+
 
 const propTypes = {
   location: PropTypes.object.isRequired,
 };
 
-export default function ExampleTwoDeepComponent({ location }) {
-  const queryPresent = location.search !== '';
-  const hashPresent = location.hash !== '';
 
-  function queryStringTitle() {
-    if (queryPresent) return 'The query string field-value pairs are:';
-    return 'No query string in the url';
-  }
+const queryPresent = location.search !== '';
 
-  function hashFragmentTitle() {
-    if (hashPresent) return 'The hash fragment is:';
-    return 'No hash fragment in the url';
-  }
+class ExampleTwoDeepComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "",
+            chipData: [],
+            availableShows: [ "Game of Thrones", "Peaky", "Peaky Blinders"]};
+        this.styles = {
+            chip: {
+                margin: 4,
+            },
+            wrapper: {
+                display: 'flex',
+                flexWrap: 'wrap',
+            },
+        };
 
-  function linkToShowQueryAndOrHash() {
-    if (queryPresent && hashPresent) return null;
-
-    const queryString = (queryPresent ? location.search : '?field1=foo&field2=bar');
-    const hashFragment = (hashPresent ? location.hash : '#boom!');
-
-    let linkText = '';
-    if (queryPresent && !hashPresent) linkText = 'Show with hash fragment';
-    if (!queryPresent && hashPresent) linkText = 'Show with query string';
-    if (!queryPresent && !hashPresent) linkText = 'Show with query string and hash fragment';
-
-    return (
-      <div style={s.lineContainer}>
-        <Interactive
-          as={Link}
-          to={`/example/two-deep${queryString}${hashFragment}`}
-          {...s.link}
-        >{linkText}</Interactive>
-      </div>
-    );
-  }
-
-  function parseQueryString() {
+    }
+  _parseQueryString = () => {
     if (!queryPresent) return [];
     return location.search
       .replace('?', '')
@@ -54,27 +42,79 @@ export default function ExampleTwoDeepComponent({ location }) {
       .map(pair => [pair[0], pair.slice(1).join('=')]);
   }
 
-  return (
-    <div>
-      <div style={s.lineContainer}>
-        <div>{queryStringTitle()}</div>
-        <ul>
-          {
-            parseQueryString().map((pair, index) => (
-              <Li key={`${pair[0]}${pair[1]}${index}`}>{`${pair[0]}: ${pair[1]}`}</Li>
-            ))
+  componentDidMount = () => {
+      const queryParams = this._parseQueryString()
+
+
+      for (let key of queryParams) {
+          if (key[0] === "shows") {
+              const chipData = decodeURIComponent(key[1]).split(",").reduce((result, show) => {
+                      if (this.state.availableShows.indexOf(show) > -1) {
+                          result.push({"key": show, "label": show})
+                      }
+                      return result
+                  }, []
+              )
+
+              console.debug(this.state.chipData, chipData)
+              this.setState({chipData})
           }
-        </ul>
-      </div>
-      <div style={s.lineContainer}>
-        <div>{hashFragmentTitle()}</div>
-        <ul>
-          {hashPresent && <Li>{location.hash.slice(1)}</Li>}
-        </ul>
-      </div>
-      {linkToShowQueryAndOrHash()}
-    </div>
-  );
+      }
+
+      console.debug(this.state.chipData)
+  }
+
+    handleRequestDelete = (key) => {
+        this.chipData = this.state.chipData;
+        const chipToDelete = this.chipData.map((chip) => chip.key).indexOf(key);
+        this.chipData.splice(chipToDelete, 1);
+        this.setState({chipData: this.chipData});
+    };
+
+    renderChip(data) {
+        return (
+            <Chip
+                key={data.key}
+                onRequestDelete={() => this.handleRequestDelete(data.key)}
+                style={this.styles.chip}
+            >
+                <Avatar color="#444" icon={<SvgIconFace />} />
+                {data.label}
+            </Chip>
+        );
+    }
+
+    _handleSearchChange = (value) => {
+        this.setState({value})
+        if (this.state.availableShows.indexOf(value) > -1) {
+            const chipData = this.state.chipData.concat([{key: value, label: value}])
+            this.setState({chipData})
+            this.setState({value: ""})
+            console.debug(this.state.chipData)
+        }
+    }
+
+    render() {
+      return (
+        <div>
+            <SearchBar
+                hintText="Add shows to compare"
+                dataSource={this.state.availableShows}
+                onChange={(value) => this._handleSearchChange(value)}
+                onRequestSearch={() => console.log('onRequestSearch')}
+                value={this.state.value}
+                style={{
+                    margin: '2em auto',
+                    maxWidth: 800
+                }}
+            />
+            <div style={this.styles.wrapper}>
+                {this.state.chipData.map(this.renderChip, this)}
+            </div>
+        </div>
+    );
+  }
 }
 
 ExampleTwoDeepComponent.propTypes = propTypes;
+export default ExampleTwoDeepComponent;
