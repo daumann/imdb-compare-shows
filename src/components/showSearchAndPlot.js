@@ -14,9 +14,9 @@ const propTypes = {
 };
 
 
-const queryPresent = location.search !== '';
+const queryPresent = location.search !== ''
 const apiKey = "29711e5c"
-const omdbHost = "http://www.omdbapi.com/"
+const omdbHost = "https://www.omdbapi.com/"
 const waitForInput = 500
 
 class ShowSearchAndPlot extends ReactQueryParams {
