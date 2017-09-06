@@ -15,4 +15,9 @@ $ npm install
 $ npm start
 ```
 
+if you are hosting your app on gh-pages (like this one), you can build the bundle with:
+```bash
+$ npm run build
+```
+
 MIT licensed - have fun!
