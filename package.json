@@ -1,18 +1,20 @@
 {
-  "name": "spa-github-pages",
-  "version": "5.0.0",
-  "private": true,
-  "description": "Single Page Apps for GitHub Pages",
+  "name": "imdb-compare-shows",
+  "version": "1.0.0",
+  "description": "Compare TV shows by IMDB ratings and episodes",
   "scripts": {
     "start": "webpack-dev-server --devtool eval-source-map --history-api-fallback --open",
     "build": "webpack -p"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rafrex/spa-github-pages.git"
+    "url": "git+https://github.com/daumann/imdb-compare-shows.git"
   },
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.16.2",
+    "imdb-api": "^3.1.1",
+    "lodash.debounce": "^4.0.8",
     "material-ui": "^0.19.1",
     "material-ui-search-bar": "^0.4.0",
     "prop-types": "^15.5.8",
@@ -20,6 +22,7 @@
     "react-dom": "^15.5.4",
     "react-google-charts": "^1.5.5",
     "react-interactive": "^0.6.5",
+    "react-query-params": "^1.0.7",
     "react-router-dom": "^4.1.1"
   },
   "devDependencies": {

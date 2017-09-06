@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import CompareShows from './ExampleTwoDeepComponent';
+import CompareShows from './showSearchAndPlot';
 import PageNotFound from './PageNotFound';
 import s from '../styles/app.style';
 
