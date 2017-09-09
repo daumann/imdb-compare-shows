@@ -1,9 +1,9 @@
-import style from './style';
 
+import style from './style';
 const s = Object.create(style);
 
 s.root = {
-  fontFamily: 'helvetica, sans-serif',
+  fontFamily: 'Jura, sans-serif',
   fontWeight: '300',
   fontSize: '16px',
   letterSpacing: '0.025em',

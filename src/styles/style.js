@@ -41,7 +41,7 @@ export default {
 export const Code = ({ children }) => (
   <code
     style={{
-      fontFamily: 'monospace',
+      fontFamily: 'Jura',
       fontSize: '15px',
       paddingLeft: '2px',
     }}
