@@ -25,7 +25,7 @@ const progressColors = {
 }
 
 const queryPresent = location.search !== ''
-const apiKey = "29711e5c"
+const apiKey = ""
 const omdbHost = "https://www.omdbapi.com/"
 const waitForInput = 500
 
