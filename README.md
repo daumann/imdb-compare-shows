@@ -7,7 +7,7 @@ by IMDB ratings and episodes.
 
 ## Installation
 
-Add your own [OMDb API](http://www.omdbapi.com/) here: 
+Add your own [OMDb API](http://www.omdbapi.com/) here: https://github.com/daumann/imdb-compare-shows/blob/master/src/components/showSearchAndPlot.js#L28
 
 then install and start the app:
 ```bash
@@ -15,7 +15,10 @@ $ npm install
 $ npm start
 ```
 
-if you are hosting your app on gh-pages (like this one), you can build the bundle with:
+If you are hosting your app on gh-pages (like this one), you need to change the relative path here:
+https://github.com/daumann/imdb-compare-shows/blob/master/index.html#L94-L95
+
+Then you can build the bundle with:
 ```bash
 $ npm run build
 ```
