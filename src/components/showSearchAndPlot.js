@@ -404,7 +404,7 @@ class ShowSearchAndPlot extends ReactQueryParams {
                                         onClick={() => {
                                             domtoimage.toBlob(document.getElementById('imdbChart'))
                                                 .then(function (blob) {
-                                                    FileSaver.saveAs(blob, 'imdbChart.png');
+                                                    FileSaver.saveAs(blob, this.state.chartData[0].filter( (a,b) => (b-1)%3 === 0).join(", ") + '.png');
                                                 }.bind(this))
                                         }} tooltip="Download Chart as PNG">
                                 <SvgIconDownload/>
