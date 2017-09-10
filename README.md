@@ -18,7 +18,7 @@ $ npm start
 If you are hosting your app on gh-pages (like this one), you need to change the relative path here:
 https://github.com/daumann/imdb-compare-shows/blob/master/index.html#L94-L95
 
-Then you can build the bundle with:
+then you can build the bundle with:
 ```bash
 $ npm run build
 ```
