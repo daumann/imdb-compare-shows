@@ -41,7 +41,6 @@ class ShowSearchAndPlot extends ReactQueryParams {
             availableShows: [],
             showDetails: {},
             chartHeight: window.innerHeight - 250,
-            // data={[['Age', 'Weight', { role: 'tooltip' }, 'Wesaight', { role: 'tooltip' }], [8, 12, 'tt11', 22,'tt12'], [4, 5.2, 'tt21',15.2,  'tt22']]}
             chartData: [
                 ['Episode'],
             ]
